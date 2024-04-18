@@ -404,26 +404,28 @@ uninstall_detail(){
                 ;;
             all)
                 # 卸载所有
-                print_in_color $YELLOW "开始 卸载所有 卸载。"
+                print_in_color $YELLOW "开始 卸载所有 卸载..."
                 for i in {1..30}; do
                     uninstall_menu $i
                 done
                 print_in_color $YELLOW "所有卸载操作已完成。"
+                print_in_color $YELLOW ""
                 continue=false
                 ;;
             1)  uninstall_cmds+=("卸载 PHP")
                 # 卸载 PHP
-                print_in_color $YELLOW "开始 PHP 卸载。"
+                print_in_color $YELLOW "开始 PHP 卸载..."
                 systemctl stop php*
                 apt-get autoremove php7* -y
                 apt purge -y php*
                 find /etc -name "php" | xargs rm -rf
                 find /run -name "php" | xargs rm -rf
                 print_in_color $YELLOW "完成 PHP 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             2)  uninstall_cmds+=("卸载 Nginx")
                 # 卸载 Nginx
-                print_in_color $YELLOW "开始 Nginx 卸载。"
+                print_in_color $YELLOW "开始 Nginx 卸载..."
                 systemctl stop nginx*
                 apt purge -y nginx-histb 
                 apt-get --purge remove nginx -y
@@ -434,10 +436,11 @@ uninstall_detail(){
                 rm -rf /usr/share/bak/gitweb
                 rm -rf /bin/install-gitweb.sh
                 print_in_color $YELLOW "完成 Nginx 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             3)  uninstall_cmds+=("卸载 Samba (smbd)")
                 # 卸载 Samba (smbd)
-                print_in_color $YELLOW "开始 Samba (smbd) 卸载。"
+                print_in_color $YELLOW "开始 Samba (smbd) 卸载..."
                 systemctl stop smbd*
                 apt-get remove --purge samba -y
                 apt purge -y samba-histb
@@ -449,66 +452,73 @@ uninstall_detail(){
                 find /run -name "samba" | xargs rm -rf
                 rm -rf /usr/share/samba
                 print_in_color $YELLOW "完成 Samba (smbd) 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             4)  uninstall_cmds+=("卸载 Tailscale")
                 # 卸载 Tailscale
-                print_in_color $YELLOW "开始 Tailscale 卸载。"
+                print_in_color $YELLOW "开始 Tailscale 卸载..."
                 systemctl stop tailscale*
                 apt purge -y tailscale-hist
                 rm -rf /opt/tailscale
                 find / -name "tailscale*" | xargs rm -rf
                 print_in_color $YELLOW "完成 Tailscale 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             5)  uninstall_cmds+=("卸载 Alist")
                 # 卸载 Alist
-                print_in_color $YELLOW "开始 Alist 卸载。"
+                print_in_color $YELLOW "开始 Alist 卸载..."
                 systemctl stop alist*
                 apt purge -y alist-histb
                 rm -rf /opt/alist
                 find /etc -name "alist.service" | xargs rm -rf
                 print_in_color $YELLOW "完成 Alist 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             6)  uninstall_cmds+=("卸载 Aria2")
                 # 卸载 Aria2
-                print_in_color $YELLOW "开始 Aria2 卸载。"
+                print_in_color $YELLOW "开始 Aria2 卸载..."
                 systemctl stop aria*
                 apt purge -y aria2-histb 
                 rm -rf /usr/bin/aria2c
                 rm -rf /usr/local/aria2
                 find /etc -name "aria2c.service" | xargs rm -rf
                 print_in_color $YELLOW "完成 Aria2 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             7)  uninstall_cmds+=("卸载 Transmission")
                 # 卸载 Transmission
-                print_in_color $YELLOW "开始 Transmission 卸载。"
+                print_in_color $YELLOW "开始 Transmission 卸载..."
                 systemctl stop transmission*
                 apt-get --purge remove transmission-* -y
                 apt purge -y transmission-histb 
                 apt purge -y transmission-common
                 rm -rf /usr/share/transmission
                 print_in_color $YELLOW "完成 Transmission 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             8)  uninstall_cmds+=("卸载 页面终端 (ttyd)")
                 # 卸载 页面终端 (ttyd)
-                print_in_color $YELLOW "开始 页面终端 (ttyd) 卸载。"
+                print_in_color $YELLOW "开始 页面终端 (ttyd) 卸载..."
                 systemctl stop ttyd.service
                 apt purge -y ttyd-histb 
                 rm -rf /usr/bin/ttyd
                 find /etc -name "ttyd.service" | xargs rm -rf
                 print_in_color $YELLOW "完成 页面终端 (ttyd) 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             9)  uninstall_cmds+=("卸载 KMS (vlmcsd)")
                 # 卸载 KMS (vlmcsd)
-                print_in_color $YELLOW "开始 KMS (vlmcsd) 卸载。"
+                print_in_color $YELLOW "开始 KMS (vlmcsd) 卸载..."
                 systemctl stop vlmcsd
                 apt purge -y vlmcsd-histb 
                 rm -rf /usr/bin/vlmcsd
                 find /etc -name "vlmcsd*" | xargs rm -rf
                 print_in_color $YELLOW "完成 KMS (vlmcsd) 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             10)  uninstall_cmds+=("卸载 FRP")
                 # 卸载 FRP
-                print_in_color $YELLOW "开始 FRP 卸载。"
+                print_in_color $YELLOW "开始 FRP 卸载..."
                 systemctl stop frpc.service
                 apt purge -y frpc-histb 
                 rm -rf /etc/first_init.d/frpc.sh
@@ -516,37 +526,40 @@ uninstall_detail(){
                 rm -rf /usr/bin/frpc
                 rm -rf /etc/systemd/system/frpc.service
                 print_in_color $YELLOW "完成 FRP 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             11)  uninstall_cmds+=("卸载 NFS")
                 # 卸载 NFS
-                print_in_color $YELLOW "开始 NFS 卸载。"
+                print_in_color $YELLOW "开始 NFS 卸载..."
                 apt purge -y nfs-server-histb 
                 apt-get --purge remove nfs-* -y
                 print_in_color $YELLOW "完成 NFS 卸载。"
                 ;;
             12)  uninstall_cmds+=("卸载 FTP (vsftpd)")
                 # 卸载 FTP (vsftpd)
-                print_in_color $YELLOW "开始 FTP (vsftpd) 卸载。"
+                print_in_color $YELLOW "开始 FTP (vsftpd) 卸载..."
                 systemctl stop vsftpd
                 apt-get --purge remove vsftpd -y
                 apt purge -y vsftpd-histb 
                 apt purge -y vsftpd 
                 find /run -name "vsftpd" | xargs rm -rf
                 print_in_color $YELLOW "完成 FTP (vsftpd) 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             13)  uninstall_cmds+=("卸载 易有云 (linkease)")
                 # 卸载 易有云 (linkease)
-                print_in_color $YELLOW "开始 易有云 (linkease) 卸载。"
+                print_in_color $YELLOW "开始 易有云 (linkease) 卸载..."
                 sudo systemctl stop linkease.service
                 apt purge -y linkease-histb
                 apt remove linkease
                 sudo rm /usr/local/bin/linkease
                 sudo rm -rf /usr/local/linkease
                 print_in_color $YELLOW "完成 易有云 (linkease) 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             14)  uninstall_cmds+=("卸载 FileBrowser")
                 # 卸载 FileBrowser
-                print_in_color $YELLOW "开始 FileBrowser 卸载。"
+                print_in_color $YELLOW "开始 FileBrowser 卸载..."
                 sudo systemctl stop filebrowser
                 sudo systemctl disable filebrowser.service
                 apt purge -y filebrowser-histb 
@@ -554,136 +567,157 @@ uninstall_detail(){
                 sudo find / -type f -name "*filebrowser*" ! -name "*.deb" ! -name "*.rpm" -exec rm -rf {} \; 2>/dev/null
                 sudo rm -rf /opt/filebrowser
                 print_in_color $YELLOW "完成 FileBrowser 卸载。"
+                print_in_color $YELLOW ""
                 ;;
 
 
             15)  uninstall_cmds+=("卸载 typecho")
                 # 卸载 FileBrowser
-                print_in_color $YELLOW "开始 typecho 卸载。"
+                print_in_color $YELLOW "开始 typecho 卸载..."
                 sudo systemctl stop typecho                
                 apt purge -y typecho-histb
                 print_in_color $YELLOW "完成 typecho 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             16)  uninstall_cmds+=("卸载 cronweb")
                 # 卸载 FileBrowser
-                print_in_color $YELLOW "开始 cronweb 卸载。"
+                print_in_color $YELLOW "开始 cronweb 卸载..."
                 sudo systemctl stop cronweb                
                 apt purge -y cronweb-histb 
                 print_in_color $YELLOW "完成 cronweb 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             17)  uninstall_cmds+=("卸载 ddns")
                 # 卸载 FileBrowser
-                print_in_color $YELLOW "开始 ddns 卸载。"
+                print_in_color $YELLOW "开始 ddns 卸载..."
                 sudo systemctl stop ddns                
                 apt purge -y ddns-histb 
                 print_in_color $YELLOW "完成 ddns 卸载。"
+                print_in_color $YELLOW ""
                 ;;
 
             18)  uninstall_cmds+=("卸载 h5ai")
                 # 卸载 FileBrowser
-                print_in_color $YELLOW "开始 h5ai 卸载。"
+                print_in_color $YELLOW "开始 h5ai 卸载..."
                 sudo systemctl stop h5ai                
                 apt purge -y h5ai-histb 
                 print_in_color $YELLOW "完成 h5ai 卸载。"
+                print_in_color $YELLOW ""
                 ;;
 
 
 
             31)  uninstall_cmds+=("卸载 青龙面板")
                 # 卸载 青龙面板
-                print_in_color $YELLOW "开始 青龙面板 卸载。"
+                print_in_color $YELLOW "开始 青龙面板 卸载..."
                 hinas-clear qinglong
                 print_in_color $YELLOW "完成 青龙面板 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             32)  uninstall_cmds+=("卸载 v2ray")
                 # 卸载 v2ray
-                print_in_color $YELLOW "开始 v2ray 卸载。"
+                print_in_color $YELLOW "开始 v2ray 卸载..."
                 hinas-clear v2ray
                 print_in_color $YELLOW "完成 v2ray 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             33)  uninstall_cmds+=("卸载 wordpress")
                 # 卸载 wordpress
-                print_in_color $YELLOW "开始 wordpress 卸载。"
+                print_in_color $YELLOW "开始 wordpress 卸载..."
                 hinas-clear wordpress
                 print_in_color $YELLOW "完成 wordpress 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             34)  uninstall_cmds+=("卸载 photoalbum")
                 # 卸载 photoalbum
-                print_in_color $YELLOW "开始 photoalbum 卸载。"
+                print_in_color $YELLOW "开始 photoalbum 卸载..."
                 hinas-clear photoalbum
                 print_in_color $YELLOW "完成 photoalbum 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             35)  uninstall_cmds+=("卸载 mysql")
                 # 卸载 mysql
-                print_in_color $YELLOW "开始 mysql 卸载。"
+                print_in_color $YELLOW "开始 mysql 卸载..."
                 hinas-clear mysql
                 print_in_color $YELLOW "完成 mysql 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             36)  uninstall_cmds+=("卸载 chatgpt")
                 # 卸载 chatgpt
-                print_in_color $YELLOW "开始 chatgpt 卸载。"
+                print_in_color $YELLOW "开始 chatgpt 卸载..."
                 hinas-clear chatgpt
                 print_in_color $YELLOW "完成 chatgpt 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             37)  uninstall_cmds+=("卸载 系统teslamate")
                 # 卸载 系统teslamate
-                print_in_color $YELLOW "开始 系统teslamate 卸载。"
+                print_in_color $YELLOW "开始 系统teslamate 卸载..."
                 hinas-clear teslamate
                 print_in_color $YELLOW "完成 系统teslamate 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             38)  uninstall_cmds+=("卸载 jellyfin")
                 # 卸载 jellyfin
-                print_in_color $YELLOW "开始 jellyfin 卸载。"
+                print_in_color $YELLOW "开始 jellyfin 卸载..."
                 hinas-clear jellyfin
                 print_in_color $YELLOW "完成 jellyfin 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             39)  uninstall_cmds+=("卸载 casaos")
                 # 卸载 casaos
-                print_in_color $YELLOW "开始 casaos 卸载。"
+                print_in_color $YELLOW "开始 casaos 卸载..."
                 hinas-clear casaos
                 print_in_color $YELLOW "完成 casaos 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             40)  uninstall_cmds+=("卸载 portainer")
                 # 卸载 portainer
-                print_in_color $YELLOW "开始 portainer 卸载。"
+                print_in_color $YELLOW "开始 portainer 卸载..."
                 hinas-clear portainer
                 print_in_color $YELLOW "完成 portainer 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             41)  uninstall_cmds+=("卸载 mrdoc")
                 # 卸载 mrdoc
-                print_in_color $YELLOW "开始 mrdoc 卸载。"
+                print_in_color $YELLOW "开始 mrdoc 卸载..."
                 hinas-clear mrdoc
                 print_in_color $YELLOW "完成 mrdoc 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             42)  uninstall_cmds+=("卸载 homebridge")
                 # 卸载 青龙面板
-                print_in_color $YELLOW "开始 homebridge 卸载。"
+                print_in_color $YELLOW "开始 homebridge 卸载..."
                 hinas-clear homebridge
                 print_in_color $YELLOW "完成 homebridge 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             43)  uninstall_cmds+=("卸载 homeassistant")
                 # 卸载 homeassistant
-                print_in_color $YELLOW "开始 homeassistant 卸载。"
+                print_in_color $YELLOW "开始 homeassistant 卸载..."
                 hinas-clear homeassistant
                 print_in_color $YELLOW "完成 homeassistant 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             44)  uninstall_cmds+=("卸载 gitweb")
                 # 卸载 gitweb
-                print_in_color $YELLOW "开始 gitweb 卸载。"
+                print_in_color $YELLOW "开始 gitweb 卸载..."
                 hinas-clear gitweb
                 print_in_color $YELLOW "完成 gitweb 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             45)  uninstall_cmds+=("卸载 kod")
                 # 卸载 kod
-                print_in_color $YELLOW "开始 kod 卸载。"
+                print_in_color $YELLOW "开始 kod 卸载..."
                 hinas-clear kod
                 print_in_color $YELLOW "完成 kod 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             46)  uninstall_cmds+=("卸载 docker")
                 # 卸载 docker
-                print_in_color $YELLOW "开始 docker 卸载。"
+                print_in_color $YELLOW "开始 docker 卸载..."
                 hinas-clear docker
                 print_in_color $YELLOW "完成 docker 卸载。"
+                print_in_color $YELLOW ""
                 ;;
             *)
                 print_in_color $YELLOW "无效的选项 $option。"
