@@ -358,6 +358,7 @@ uninstall_menu() {
     print_in_color $YELLOW "16. 卸载 cronweb"
     print_in_color $YELLOW "17. 卸载 ddns"
     print_in_color $YELLOW "18. 卸载 h5ai"
+    print_in_color $YELLOW "19. 卸载 cloudreve "
     print_in_color $YELLOW ""
     print_in_color $PURPLE "以下为docker卸载"
     print_in_color $YELLOW ""
@@ -604,7 +605,13 @@ uninstall_detail(){
                 print_in_color $YELLOW "完成 h5ai 卸载。"
                 print_in_color $YELLOW ""
                 ;;
-
+            19)  uninstall_cmds+=("卸载 cloudreve")
+                # 卸载 cloudreve 
+                print_in_color $YELLOW "开始 cloudreve 卸载..."
+                uninstall-cloudreve.sh
+                print_in_color $YELLOW "完成 cloudreve 卸载。"
+                print_in_color $YELLOW ""
+                ;;
 
 
             31)  uninstall_cmds+=("卸载 青龙面板")
