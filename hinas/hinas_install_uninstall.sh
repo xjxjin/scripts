@@ -727,3 +727,4 @@ uninstall_detail(){
 }
 
 # 运行主菜单
+main_menu
