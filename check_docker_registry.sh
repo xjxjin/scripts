@@ -737,7 +737,7 @@ function Combin_Function() {
     ## 基础环境判断
     PermissionJudgment
     ## 系统判定变量
-    EnvJudgment
+    # EnvJudgment
     ## 欢迎使用 Docker Engine 一键安装脚本
     StartTitle
     ## 打印软件源列表
