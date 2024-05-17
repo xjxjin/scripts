@@ -237,7 +237,7 @@ test_speed() {
     start_time=$(date +%s.%N)
 
     # 使用指定的镜像源拉取hello-world镜像
-    docker pull $source/$image > /dev/null 2>&1
+    timeout 30 docker pull $source/$image > /dev/null 2>&1
 
     # 拉取镜像后记录当前时间
     local end_time=$(date +%s.%N)
