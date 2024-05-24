@@ -36,6 +36,7 @@ mirror_list_registry=(
     "阿里云（美国西部-硅谷）@registry.us-west-1.aliyuncs.com"
     "阿里云（美国东部-弗吉尼亚）@registry.us-east-1.aliyuncs.com"
     "阿里云（阿联酋-迪拜）@registry.me-east-1.aliyuncs.com"
+    "阿里云（hinas海纳斯）@z0nkeoyx.mirror.aliyuncs.com"
     "谷歌云@mirror.gcr.io"
     "官方@registry.hub.docker.com"
 )
