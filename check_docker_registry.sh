@@ -217,7 +217,7 @@ function EnvJudgment() {
 }
 
 # 检查是否安装了bc，如果没有安装，则进行安装
-check_and_install_bc() {
+CheckBc() {
     if ! command -v bc &> /dev/null; then
         echo "bc could not be found, attempting to install it..."
         sudo apt-get update
@@ -740,7 +740,7 @@ function Combin_Function() {
     ## 系统判定变量
     # EnvJudgment
     ## 检查bc是否安装
-    check_and_install_bc
+    CheckBc
     ## 欢迎使用 Docker Engine 一键安装脚本
     StartTitle
     ## 打印软件源列表
