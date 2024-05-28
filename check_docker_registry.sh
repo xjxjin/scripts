@@ -739,6 +739,8 @@ function Combin_Function() {
     PermissionJudgment
     ## 系统判定变量
     # EnvJudgment
+    ## 检查bc是否安装
+    check_and_install_bc
     ## 欢迎使用 Docker Engine 一键安装脚本
     StartTitle
     ## 打印软件源列表
