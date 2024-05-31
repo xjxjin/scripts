@@ -1,0 +1,123 @@
+#!/bin/sh
+
+LOGGER() {
+	echo $*
+	logger -t "automount[$$]" "$*"
+}
+
+write_config() {
+	[ ! -f /etc/automount ] && touch /etc/automount
+	echo $1 > /etc/automount
+	LOGGER "Setting automount mode to $1 ..."
+	$2
+}
+
+get_config() {
+	local mode=$(cat /etc/automount 2> /dev/null)
+	[ -z "$mode" ] && echo 1 || echo $mode
+}
+
+atteched_mode="$1,$DEVTYPE"
+
+case "$1" in
+on)
+	write_config 1 "exit 0"
+;;
+off)
+	write_config 0 "exit 0"
+;;
+-a)
+	atteched_mode="block,partition"
+	ACTION=add
+;;
+-u)
+	atteched_mode="block,partition"
+	force_umount=1
+	ACTION=remove
+;;
+--help | -h)
+	LOGGER "Usage: $0 [OPT] <-a | -u> [SW] <on | off>"
+	exit 0
+;;
+esac
+
+case "$atteched_mode" in
+block,partition)
+	mkdir -p /var/log/automount
+	env > /var/log/automount/automount-$DEVTYPE-$(date +%Y%m%d%H%M%S)-$$-$ACTION.log
+	case "$ACTION" in
+	remove)
+		for disk in $(mount 2> /dev/null | awk '{print $1}' | grep /dev | egrep -v "mmcblk0|loop");do
+			part=$(mount 2> /dev/null | grep $disk | awk '{print $3}')
+			[ ! "$part" ] && continue
+			skip_umount=$(lsblk --list $disk > /dev/null 2>&1; echo $?)
+			if [ "$skip_umount" = 0 -a "$force_umount" != 1 ]
+			then
+				LOGGER "Skip umounting [$part] ..."
+				continue
+			fi
+			umount $part 2> /dev/null || umount -l $part 2> /dev/null
+			sleep 1
+			LOGGER "Successfully umounted invisible part [$part]"
+			[ ! "$(ls -A $part)" ] && rm -rf $part
+		done
+	;;
+	add)
+		if [ "$(get_config)" = 0 ]
+		then
+			LOGGER "Switch of automount is disabled, exit ..."
+			exit 0
+		fi
+		for part in $(lsblk --list | grep -v mmcblk0 | grep part | awk '{print $1}');do
+			blk_id="$(blkid /dev/$part | egrep -o 'UUID="[0-9a-zA-Z].+' | awk -F '["]' '/UUID/{print $2}')"
+			LOGGER "UUID of /dev/$part: $blk_id"
+			if [ "$(grep -v '#' /etc/fstab | grep -q $blk_id ; echo $?)" = 0 ]
+			then
+				LOGGER "UUID of /dev/$part detected in /etc/fstab, using [mount -a] command ..."
+				mnt_point=$(grep -v '#' /etc/fstab 2> /dev/null | grep $blk_id | awk '{print $2}')
+				[ "$mnt_point" ] && mkdir -p $mnt_point && chmod 777 $mnt_point
+				mount -a
+				continue
+			fi
+			skip_mount=$(mount 2> /dev/null | awk '{print $1}' | grep -q $part ; echo $?)
+			fstype=$(blkid /dev/$part 2> /dev/null | egrep -o 'TYPE="[0-9a-zA-Z].+' | awk -F '["]' '/TYPE/{print $2}')
+			if [ -z "$fstype" ]
+			then
+				LOGGER "Unknown filesystem [/dev/$part]"
+				continue
+			fi
+			if [ "$skip_mount" = 0 ]
+			then
+				LOGGER "Already mounted [/dev/$part] at this device"
+				continue
+			fi
+			mkdir -p /mnt/$part || LOGGER "Failed to create directory [/mnt/$part] ..."
+			chmod 777 /mnt/$part
+			case "$fstype" in
+			ntfs)
+				extra_cmd="-o nls=utf8"
+			;;
+			vfat | fat32)
+				extra_cmd="-o iocharset=utf8"
+			;;
+			esac
+			LOGGER "Try to mount disk [/dev/$part]($fstype) at [/mnt/$part] ..."
+			mount -t $fstype /dev/$part /mnt/$part -o rw,noatime,nodiratime $extra_cmd
+			if [ "$?" != 0 ]
+			then
+				fsck -a /dev/$part
+				LOGGER "Retry to mount disk [/dev/$part]($fstype) after [File System Check] ..."
+				mount -t $fstype /dev/$part /mnt/$part -o rw,defaults $extra_cmd || {
+					LOGGER "Failed to mount disk [/dev/$part] at [/mnt/$part]"
+					continue
+				}
+			fi
+			LOGGER "Successfully mount disk [/dev/$part] at [/mnt/$part]"
+			sleep 1
+		done
+	;;
+	esac
+;;
+esac
+
+exit 0
