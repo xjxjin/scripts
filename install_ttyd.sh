@@ -53,11 +53,14 @@ EOF
     sudo systemctl enable ttyd.service
     sudo systemctl start ttyd.service
 
+    # 获取本机的IP地址
+    IP=$(hostname -I | awk '{print $1}')
+    PORT=13594  # ttyd的端口号
+
     # 检查服务状态
     if sudo systemctl status ttyd.service | grep -q "running"; then
-        echo "ttyd 服务正在运行。"
+        echo "ttyd 服务正在运行。访问地址：http://$IP:$PORT"
     else
         echo "ttyd 服务启动失败。"
     fi
-
 fi
