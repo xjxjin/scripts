@@ -1,14 +1,13 @@
 # 各类脚本
 ## 1.安装和卸载Hinas自带软件地址
 
-国内安装
+国内执行
 
 ```bash
 bash <(curl -sSL https://gitee.com/xjxjin/scripts/raw/main/hinas/hinas_install_uninstall.sh)
 ```
 
-
-国际安装
+国际执行
 ```bash
 bash <(curl -sSL https://github.com/xjxjin/scripts/raw/main/hinas/hinas_install_uninstall.sh)
 ```
@@ -18,6 +17,7 @@ bash <(curl -sSL https://github.com/xjxjin/scripts/raw/main/hinas/hinas_install_
 ```bash
 bash <(curl -sSL https://gitee.com/xjxjin/scripts/raw/main/install_ttyd.sh)
 ```
+
 国际执行
 ```bash
 bash <(curl -sSL https://github.com/xjxjin/scripts/raw/main/install_ttyd.sh)
@@ -27,10 +27,15 @@ bash <(curl -sSL https://github.com/xjxjin/scripts/raw/main/install_ttyd.sh)
 
 ## 3、进行docker镜像源测试，替换docker镜像源
 
+国内执行
 ```bash
 bash <(curl -sSL https://gitee.com/xjxjin/scripts/raw/main/check_docker_registry.sh)
 ```
 
+国际执行
+```bash
+bash <(curl -sSL https://github.com/xjxjin/scripts/raw/main/check_docker_registry.sh)
+```
 
 
 示例 1.安装卸载脚本
