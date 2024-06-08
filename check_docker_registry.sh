@@ -41,6 +41,9 @@ mirror_list_registry=(
     "官方@registry.hub.docker.com"
 )
 
+## 定义拉取的镜像,使用一个很小的镜像来测试速度
+IMAGE="xjxjin/alist-sync"
+
 ## 定义系统判定变量
 SYSTEM_DEBIAN="Debian"
 SYSTEM_UBUNTU="Ubuntu"
@@ -231,20 +234,30 @@ CheckBc() {
 # 定义一个函数来测试镜像源的下载速度
 test_speed() {
     local source=$1
-    local image="xjxjin/alist-sync" # 使用一个很小的镜像来测试速度
+    # local image="xjxjin/alist-sync" # 使用一个很小的镜像来测试速度
     local start_time
+    local log_err=“1”
 
     # 拉取镜像前记录当前时间
     start_time=$(date +%s.%N)
 
     # 使用指定的镜像源拉取hello-world镜像
-    timeout 30 docker pull $source/$image > /dev/null 2>&1
+    timeout 30 docker pull $source/$IMAGE > /dev/null 2>&1
+    if [ $? -eq 124 ]; then
+        log_err="99"
+    elif [ $? -ne 0 ]; then
+        log_err="99"
+    fi
 
     # 拉取镜像后记录当前时间
     local end_time=$(date +%s.%N)
 
     # 计算下载时间（秒）
     local download_time=$(echo "$end_time - $start_time" | bc -l)
+
+    if log_err="99"; then
+        download_time=99
+    fi
 
     echo "$download_time"
 }
