@@ -8,37 +8,38 @@
 ## Docker Registry 镜像仓库列表
 # 格式："软件源名称@软件源地址"
 mirror_list_registry=(
-    "上海交通大学@docker.mirrors.sjtug.sjtu.edu.cn"
-    "网易@hub-mirror.c.163.com"
-    "腾讯云@mirror.ccs.tencentyun.com"
-    "道客-DaoCloud@f1361db2.m.daocloud.io"
-    "微软-Azure（中国）@dockerhub.azk8s.cn"
-    "阿里云（杭州）@registry.cn-hangzhou.aliyuncs.com"
-    "阿里云（上海）@registry.cn-shanghai.aliyuncs.com"
-    "阿里云（青岛）@registry.cn-qingdao.aliyuncs.com"
-    "阿里云（北京）@registry.cn-beijing.aliyuncs.com"
-    "阿里云（张家口）@registry.cn-zhangjiakou.aliyuncs.com"
-    "阿里云（呼和浩特）@registry.cn-huhehaote.aliyuncs.com"
-    "阿里云（乌兰察布）@registry.cn-wulanchabu.aliyuncs.com"
-    "阿里云（深圳）@registry.cn-shenzhen.aliyuncs.com"
-    "阿里云（河源）@registry.cn-heyuan.aliyuncs.com"
-    "阿里云（广州）@registry.cn-guangzhou.aliyuncs.com"
-    "阿里云（成都）@registry.cn-chengdu.aliyuncs.com"
-    "阿里云（香港）@registry.cn-hongkong.aliyuncs.com"
-    "阿里云（日本-东京）@registry.ap-northeast-1.aliyuncs.com"
-    "阿里云（新加坡）@registry.ap-southeast-1.aliyuncs.com"
-    "阿里云（澳大利亚-悉尼）@registry.ap-southeast-2.aliyuncs.com"
-    "阿里云（马来西亚-吉隆坡）@registry.ap-southeast-3.aliyuncs.com"
-    "阿里云（印度尼西亚-雅加达）@registry.ap-southeast-5.aliyuncs.com"
-    "阿里云（印度-孟买）@registry.ap-south-1.aliyuncs.com"
-    "阿里云（德国-法兰克福）@registry.eu-central-1.aliyuncs.com"
-    "阿里云（英国-伦敦）@registry.eu-west-1.aliyuncs.com"
-    "阿里云（美国西部-硅谷）@registry.us-west-1.aliyuncs.com"
-    "阿里云（美国东部-弗吉尼亚）@registry.us-east-1.aliyuncs.com"
-    "阿里云（阿联酋-迪拜）@registry.me-east-1.aliyuncs.com"
-    "阿里云（hinas海纳斯）@z0nkeoyx.mirror.aliyuncs.com"
-    "谷歌云@mirror.gcr.io"
-    "官方@registry.hub.docker.com"
+    #"上海交通大学@docker.mirrors.sjtug.sjtu.edu.cn"
+    #"网易@hub-mirror.c.163.com"
+    #"腾讯云@mirror.ccs.tencentyun.com"
+    #"道客-DaoCloud@f1361db2.m.daocloud.io"
+    #"微软-Azure（中国）@dockerhub.azk8s.cn"
+    #"阿里云（杭州）@registry.cn-hangzhou.aliyuncs.com"
+    #"阿里云（上海）@registry.cn-shanghai.aliyuncs.com"
+    #"阿里云（青岛）@registry.cn-qingdao.aliyuncs.com"
+    #"阿里云（北京）@registry.cn-beijing.aliyuncs.com"
+    #"阿里云（张家口）@registry.cn-zhangjiakou.aliyuncs.com"
+    #"阿里云（呼和浩特）@registry.cn-huhehaote.aliyuncs.com"
+    #"阿里云（乌兰察布）@registry.cn-wulanchabu.aliyuncs.com"
+    #"阿里云（深圳）@registry.cn-shenzhen.aliyuncs.com"
+    #"阿里云（河源）@registry.cn-heyuan.aliyuncs.com"
+    #"阿里云（广州）@registry.cn-guangzhou.aliyuncs.com"
+    #"阿里云（成都）@registry.cn-chengdu.aliyuncs.com"
+    #"阿里云（香港）@registry.cn-hongkong.aliyuncs.com"
+    #"阿里云（日本-东京）@registry.ap-northeast-1.aliyuncs.com"
+    #"阿里云（新加坡）@registry.ap-southeast-1.aliyuncs.com"
+    #"阿里云（澳大利亚-悉尼）@registry.ap-southeast-2.aliyuncs.com"
+    #"阿里云（马来西亚-吉隆坡）@registry.ap-southeast-3.aliyuncs.com"
+    #"阿里云（印度尼西亚-雅加达）@registry.ap-southeast-5.aliyuncs.com"
+    #"阿里云（印度-孟买）@registry.ap-south-1.aliyuncs.com"
+    #"阿里云（德国-法兰克福）@registry.eu-central-1.aliyuncs.com"
+    #"阿里云（英国-伦敦）@registry.eu-west-1.aliyuncs.com"
+    #"阿里云（美国西部-硅谷）@registry.us-west-1.aliyuncs.com"
+    #"阿里云（美国东部-弗吉尼亚）@registry.us-east-1.aliyuncs.com"
+    #"阿里云（阿联酋-迪拜）@registry.me-east-1.aliyuncs.com"
+    #"阿里云（hinas海纳斯）@z0nkeoyx.mirror.aliyuncs.com"
+    #"谷歌云@mirror.gcr.io"
+    #"官方@registry.hub.docker.com"
+    nastool@docker.nastool.de
 )
 
 ## 定义拉取的镜像,使用一个很小的镜像来测试速度
@@ -222,7 +223,7 @@ function EnvJudgment() {
 # 检查是否安装了bc，如果没有安装，则进行安装
 CheckBc() {
     if ! command -v bc &> /dev/null; then
-        echo "bc could not be found, attempting to install it..."
+        echo "找不到bc，正在尝试安装它。。。"
         sudo apt-get update
         if ! sudo apt-get install -y bc; then
             echo "Failed to install bc. Please install it manually and rerun the script."
@@ -362,6 +363,7 @@ function ChooseMirrors() {
         echo -e ''
         echo -e " 运行环境 ${BLUE}${system_name} ${arch}${PLAIN}"
         echo -e " 系统时间 ${BLUE}${date} ${timezone}${PLAIN}"
+        echo -e " 2024-06-13新增可用源docker.nastool.de"
     }
 
     Title
