@@ -244,13 +244,15 @@ test_speed() {
     start_time=$(date +%s.%N)
 
     # 使用指定的镜像源拉取hello-world镜像
-    docker rmi $source/$IMAGE
-    timeout 30 docker pull $source/$IMAGE > /dev/null 2>&1
+    docker rmi $source/$IMAGE > /dev/null 2>&1
+    #timeout 30 docker pull $source/$IMAGE > /dev/null 2>&1
+    docker pull $source/$IMAGE
     if [ $? -eq 124 ]; then
         log_err="99"
     elif [ $? -ne 0 ]; then
         log_err="99"
     fi
+    docker rmi $source/$IMAGE > /dev/null 2>&1
 
     # 拉取镜像后记录当前时间
     local end_time=$(date +%s.%N)
@@ -382,7 +384,7 @@ function ChooseMirrors() {
         declare -A speed_index_array  # 用来存储每个源在列表中的索引  
         local fastest_mirrors=()
         # 测试每个源的速度并打印结果
-        echo -e "\n${BOLD}测试中，请稍候...${PLAIN}"
+        echo -e "\n${BOLD}测试中，可能需要10min, 请稍候...${PLAIN}"
 
         local tmp_mirror_name tmp_mirror_url arr_num default_mirror_name_length tmp_mirror_name_length tmp_spaces_nums a i j
         ## 计算字符串长度
