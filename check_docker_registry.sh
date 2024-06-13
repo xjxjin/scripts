@@ -40,6 +40,7 @@ mirror_list_registry=(
     #"谷歌云@mirror.gcr.io"
     #"官方@registry.hub.docker.com"
     nastool@docker.nastool.de
+    daocloud@docker.m.daocloud.io
 )
 
 ## 定义拉取的镜像,使用一个很小的镜像来测试速度
@@ -243,6 +244,7 @@ test_speed() {
     start_time=$(date +%s.%N)
 
     # 使用指定的镜像源拉取hello-world镜像
+    docker rmi $source/$IMAGE
     timeout 30 docker pull $source/$IMAGE > /dev/null 2>&1
     if [ $? -eq 124 ]; then
         log_err="99"
