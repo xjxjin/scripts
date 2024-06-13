@@ -246,7 +246,7 @@ test_speed() {
     # 使用指定的镜像源拉取hello-world镜像
     docker rmi $source/$IMAGE > /dev/null 2>&1
     #timeout 30 docker pull $source/$IMAGE > /dev/null 2>&1
-    docker pull $source/$IMAGE
+    docker pull $source/$IMAGE > /dev/null 2>&1
     if [ $? -eq 124 ]; then
         log_err="99"
     elif [ $? -ne 0 ]; then
