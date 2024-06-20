@@ -257,13 +257,13 @@ test_speed() {
     local status=$?
     if [ $status -eq 124 ]; then
         # 超时错误
-        echo "Docker pull timed out, exit status: $status"
+        # echo "Docker pull timed out, exit status: $status"
         docker rmi "$source/$image" > /dev/null 2>&1
         echo "300"
         return
     elif [ $status -ne 0 ]; then
         # 其他错误
-        echo "Docker pull failed, exit status: $status"
+        # echo "Docker pull failed, exit status: $status"
         docker rmi "$source/$image" > /dev/null 2>&1
         echo "300"
         return
