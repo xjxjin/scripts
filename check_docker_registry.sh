@@ -39,8 +39,18 @@ mirror_list_registry=(
     #"阿里云（hinas海纳斯）@z0nkeoyx.mirror.aliyuncs.com"
     #"谷歌云@mirror.gcr.io"
     #"官方@registry.hub.docker.com"
-    nastool@docker.nastool.de
-    daocloud@docker.m.daocloud.io
+    "uuuadc@hub.uuuadc.top"
+    "1panel@docker.1panel.live"
+    "rat@hub.rat.dev"
+    "anyhub@docker.anyhub.us.kg"
+    "chenby@docker.chenby.cn"
+    "jobcher@dockerhub.jobcher.com"
+    "dockerhub@dockerhub.icu"
+    "ckyl@docker.ckyl.me"
+    "awsl9527@docker.awsl9527.cn"
+    "hpcloud@docker.hpcloud.cloud"
+    "nastool@docker.nastool.de"
+    "daocloud@docker.m.daocloud.io"
 )
 
 ## 定义拉取的镜像,使用一个很小的镜像来测试速度
@@ -237,34 +247,31 @@ CheckBc() {
 test_speed() {
     local source=$1
     # local image="xjxjin/alist-sync" # 使用一个很小的镜像来测试速度
-    local start_time
-    local log_err=“1”
-
     # 拉取镜像前记录当前时间
-    start_time=$(date +%s.%N)
+    SECONDS=0
 
-    # 使用指定的镜像源拉取hello-world镜像
+    # 使用指定的镜像源拉取xjxjin/alist-sync镜像
     docker rmi $source/$IMAGE > /dev/null 2>&1
-    #timeout 30 docker pull $source/$IMAGE > /dev/null 2>&1
+    #timeout 300 docker pull $source/$IMAGE > /dev/null 2>&1
     docker pull $source/$IMAGE > /dev/null 2>&1
-    if [ $? -eq 124 ]; then
-        log_err="99"
-    elif [ $? -ne 0 ]; then
-        log_err="99"
+    local status=$?
+    if [ $status -eq 124 ]; then
+        # 超时错误
+        echo "Docker pull timed out, exit status: $status"
+        docker rmi "$source/$image" > /dev/null 2>&1
+        echo "300"
+        return
+    elif [ $status -ne 0 ]; then
+        # 其他错误
+        echo "Docker pull failed, exit status: $status"
+        docker rmi "$source/$image" > /dev/null 2>&1
+        echo "300"
+        return
     fi
     docker rmi $source/$IMAGE > /dev/null 2>&1
-
-    # 拉取镜像后记录当前时间
-    local end_time=$(date +%s.%N)
 
     # 计算下载时间（秒）
-    local download_time=$(echo "$end_time - $start_time" | bc -l)
-
-    if log_err="99"; then
-        download_time=99
-    fi
-
-    echo "$download_time"
+    echo $SECONDS
 }
 
 
@@ -367,7 +374,7 @@ function ChooseMirrors() {
         echo -e ''
         echo -e " 运行环境 ${BLUE}${system_name} ${arch}${PLAIN}"
         echo -e " 系统时间 ${BLUE}${date} ${timezone}${PLAIN}"
-        echo -e " 2024-06-13新增可用源docker.nastool.de"
+        echo -e " 2024-06-20新增可用源10个"
     }
 
     Title
@@ -759,7 +766,7 @@ function Combin_Function() {
     ## 系统判定变量
     # EnvJudgment
     ## 检查bc是否安装
-    CheckBc
+    # CheckBc
     ## 欢迎使用 Docker Engine 一键安装脚本
     StartTitle
     ## 打印软件源列表
