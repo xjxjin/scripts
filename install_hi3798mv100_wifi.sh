@@ -12,6 +12,14 @@ NC="\033[0m" # No Color - 重置颜色
 DOWNLOAD_URL="https://gitee.com/xjxjin/hinas/raw/master/hi3798mv100_hinas_wifi.tar.gz"
 EXTRACT_PATH="/tmp_bak/hi3798mv100_hinas_wifi"
 
+## 基础环境判断
+function PermissionJudgment() {
+    if [ $UID -ne 0 ]; then
+        echo -e "\n$ERROR 权限不足，请使用 Root 用户运行本脚本\n"
+        exit 1
+    fi
+}
+
 # 函数：下载文件
 download_file() {
     echo "开始下载文件..."
@@ -106,6 +114,8 @@ cleanup() {
 
 # 主逻辑
 main() {
+    基础权限判断
+    PermissionJudgment
     # 检查是否需要重新执行步骤1-4
     if [ ! -f "$EXTRACT_PATH/hi_kernel-mv100-0808.bin" ]; then
         download_file
