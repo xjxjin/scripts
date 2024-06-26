@@ -438,16 +438,16 @@ function ChooseMirrors() {
                 done
                 
                 # speed_index_array[$tmp_mirror_name]=$((i+1))  # 存储源的id值
-                if (( $(echo "scale=1; $speed < 1" | bc -l) )); then  
-                    printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s 下载速度: %s 秒\n" "$arr_num" "${tmp_mirror_name}" "0${speed}"  
+                #if (( $(echo "scale=1; $speed < 1" | bc -l) )); then  
+                    #printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s 下载速度: %s 秒\n" "$arr_num" "${tmp_mirror_name}" "0${speed}"  
                     # speed_index_array[$source]=$((i+1))
-                    speed_index_array[$tmp_mirror_name]="$(printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s \n" "$arr_num" "${tmp_mirror_name}")"
+                    #speed_index_array[$tmp_mirror_name]="$(printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s \n" "$arr_num" "${tmp_mirror_name}")"
 
-                else  
-                    speed_index_array[$tmp_mirror_name]="$(printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s \n" "$arr_num" "${tmp_mirror_name}")"
+                #else  
+                speed_index_array[$tmp_mirror_name]="$(printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s \n" "$arr_num" "${tmp_mirror_name}")"
 
-                    printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s 下载速度: %s 秒\n" "$arr_num" "${tmp_mirror_name}" "${speed}"  
-                fi
+                printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s 下载速度: %s 秒\n" "$arr_num" "${tmp_mirror_name}" "${speed}"  
+                #fi
             done
         else
             for ((i = 0; i < ${#list_arr[@]}; i++)); do
