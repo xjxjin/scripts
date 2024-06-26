@@ -124,6 +124,14 @@ function PermissionJudgment() {
     fi
 }
 
+## 检查Docker是否安装
+function CheckInstallDocker() {
+    if ! docker --version &> /dev/null; then
+        echo -e "\n$ERROR docker 未安装，请先安装docker\n"
+        exit 1
+    fi
+}
+
 ## 系统判定变量
 function EnvJudgment() {
     ## 定义系统名称
@@ -760,7 +768,8 @@ function CommandOptions() {
 
 ## 组合函数
 function Combin_Function() {
-    
+    ## 检查Docker是否安装
+    CheckInstallDocker
     ## 基础环境判断
     PermissionJudgment
     ## 系统判定变量
