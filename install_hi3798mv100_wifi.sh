@@ -10,19 +10,20 @@ NC="\033[0m" # No Color - 重置颜色
 
 # 定义变量
 DOWNLOAD_URL="https://gitee.com/xjxjin/hinas/raw/master/hi3798mv100_hinas_wifi.tar.gz"
-EXTRACT_PATH="/tmp/hi3798mv100_hinas_wifi"
+EXTRACT_PATH="/tmp_bak/hi3798mv100_hinas_wifi"
 
 # 函数：下载文件
 download_file() {
     echo "开始下载文件..."
-    wget -O "/tmp/$(basename $DOWNLOAD_URL)" "$DOWNLOAD_URL"
+    mkdir -p "/tmp_bak"
+    wget -O "/tmp_bak/$(basename $DOWNLOAD_URL)" "$DOWNLOAD_URL"
 }
 
 # 函数：解压文件
 extract_file() {
-    echo "解压文件到 /tmp ..."
+    echo "解压文件到 /tmp_bak ..."
     mkdir -p "$EXTRACT_PATH"
-    tar -xzf "/tmp/$(basename $DOWNLOAD_URL)" -C "$EXTRACT_PATH" --strip-components=1
+    tar -xzf "/tmp_bak/$(basename $DOWNLOAD_URL)" -C "$EXTRACT_PATH" --strip-components=1
 }
 
 # 函数：执行dd命令
