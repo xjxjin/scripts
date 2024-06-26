@@ -36,7 +36,17 @@ bash <(curl -sSL https://gitee.com/xjxjin/scripts/raw/main/check_docker_registry
 ```bash
 bash <(curl -sSL https://github.com/xjxjin/scripts/raw/main/check_docker_registry.sh)
 ```
+## 4、hi3798mv100  安装wifi模块
 
+国内执行
+```bash
+bash <(curl -sSL https://gitee.com/xjxjin/scripts/raw/main/install_hi3798mv100_wifi.sh)
+```
+
+国际执行
+```bash
+bash <(curl -sSL https://github.com/xjxjin/scripts/raw/main/install_hi3798mv100_wifi.sh)
+```
 
 示例 1.安装卸载脚本
 
