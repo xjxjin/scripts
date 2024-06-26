@@ -60,16 +60,16 @@ execute_wifi_install() {
     echo "请选择要执行的网卡类型:"
     echo " etv - 执行 rtl8188etv-0808.tar.gz 安装"
     echo " ftv - 执行 rtl8188ftv-0808.tar.gz 安装"
-    read -p "请输入选项 (默认为 etv): " user_choice
+    read -p "请输入选项 (默认为 ftv): " user_choice
 
     # 根据用户输入设置模块文件名
     case $user_choice in
-        ftv)
-            module_file="rtl8188ftv-0808.tar.gz"
+        etv)
+            module_file="rtl8188etv-0808.tar.gz"
             ;;
         *)
             # 默认选项或无效输入
-            module_file="rtl8188etv-0808.tar.gz"
+            module_file="rtl8188ftv-0808.tar.gz"
             ;;
     esac
 
