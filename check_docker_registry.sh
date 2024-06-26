@@ -51,6 +51,7 @@ mirror_list_registry=(
     "hpcloud@docker.hpcloud.cloud"
     "nastool@docker.nastool.de"
     "daocloud@docker.m.daocloud.io"
+    "aidenxin@docker.aidenxin.xyz"
 )
 
 ## 定义拉取的镜像,使用一个很小的镜像来测试速度
@@ -382,7 +383,7 @@ function ChooseMirrors() {
         echo -e ''
         echo -e " 运行环境 ${BLUE}${system_name} ${arch}${PLAIN}"
         echo -e " 系统时间 ${BLUE}${date} ${timezone}${PLAIN}"
-        echo -e " 2024-06-20新增可用源10个"
+        echo -e " 2024-06-26新增可用docker源1个"
     }
 
     Title
