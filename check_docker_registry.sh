@@ -482,11 +482,11 @@ function ChooseMirrors() {
                 tmp_mirror_name="${tmp_mirror_name} "
             done
 
-            if (( $(echo "scale=1; $speed < 1" | bc -l) )); then  
-                printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s ${RED}下载速度: %s${PLAIN} 秒\n" "$arr_num" "${tmp_mirror_name}" "0${speed}"  
-            else  
-                printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s ${RED}下载速度: %s${PLAIN} 秒\n" "$arr_num" "${tmp_mirror_name}" "${speed}"  
-            fi
+            # if (( $(echo "scale=1; $speed < 1" | bc -l) )); then  
+                #printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s ${RED}下载速度: %s${PLAIN} 秒\n" "$arr_num" "${tmp_mirror_name}" "0${speed}"  
+            #else  
+            printf "源%2s %-$(($default_mirror_name_length + ${tmp_mirror_name_length}))s ${RED}下载速度: %s${PLAIN} 秒\n" "$arr_num" "${tmp_mirror_name}" "${speed}"  
+            #fi
             ((count++))  
         done <<< "$sorted_pairs"  
         
