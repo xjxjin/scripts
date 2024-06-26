@@ -6,7 +6,7 @@ GREEN="\033[32m"
 YELLOW="\033[33m"
 BLUE="\033[34m"
 NC="\033[0m" # No Color - 重置颜色
-
+ERROR='[\033[31mERROR\033[0m]'
 
 # 定义变量
 DOWNLOAD_URL="https://gitee.com/xjxjin/hinas/raw/master/hi3798mv100_hinas_wifi.tar.gz"
