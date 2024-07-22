@@ -415,6 +415,8 @@ function ChooseMirrors() {
         echo -e ''
         echo -e " 运行环境 ${BLUE}${system_name} ${arch}${PLAIN}"
         echo -e " 系统时间 ${BLUE}${date} ${timezone}${PLAIN}"
+        echo -e " 国内环境可用docker镜像源上报: https://gitee.com/xjxjin/scripts/issues"
+        echo -e " 国际环境可用docker镜像源上报: https://github.com/xjxjin/scripts/issues"
         echo -e " 2024-06-26新增可用docker源1个"
     }
 
