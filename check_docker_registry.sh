@@ -52,6 +52,7 @@ mirror_list_registry=(
     "nastool@docker.nastool.de"
     "daocloud@docker.m.daocloud.io"
     "aidenxin@docker.aidenxin.xyz"
+    "kubesre@dhub.kubesre.xyz"
 )
 
 ## 定义拉取的镜像,使用一个很小的镜像来测试速度
@@ -417,7 +418,7 @@ function ChooseMirrors() {
         echo -e " 系统时间 ${BLUE}${date} ${timezone}${PLAIN}"
         echo -e " 国内环境可用docker镜像源上报: https://gitee.com/xjxjin/scripts/issues"
         echo -e " 国际环境可用docker镜像源上报: https://github.com/xjxjin/scripts/issues"
-        echo -e " 2024-06-26新增可用docker源1个"
+        echo -e " 2024-08-28 新增由[LemonCANDY42]提供可用docker源1个"
     }
 
     Title
