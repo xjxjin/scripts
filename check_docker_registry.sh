@@ -39,20 +39,23 @@ mirror_list_registry=(
     #"阿里云（hinas海纳斯）@z0nkeoyx.mirror.aliyuncs.com"
     #"谷歌云@mirror.gcr.io"
     #"官方@registry.hub.docker.com"
-    "uuuadc@hub.uuuadc.top"
+    #"uuuadc@hub.uuuadc.top"
     "1panel@docker.1panel.live"
     "rat@hub.rat.dev"
-    "anyhub@docker.anyhub.us.kg"
-    "chenby@docker.chenby.cn"
-    "jobcher@dockerhub.jobcher.com"
-    "dockerhub@dockerhub.icu"
-    "ckyl@docker.ckyl.me"
-    "awsl9527@docker.awsl9527.cn"
-    "hpcloud@docker.hpcloud.cloud"
-    "nastool@docker.nastool.de"
-    "daocloud@docker.m.daocloud.io"
+    #"anyhub@docker.anyhub.us.kg"
+    #"chenby@docker.chenby.cn"
+    #"jobcher@dockerhub.jobcher.com"
+    #"dockerhub@dockerhub.icu"
+    #"ckyl@docker.ckyl.me"
+    #"awsl9527@docker.awsl9527.cn"
+    #"hpcloud@docker.hpcloud.cloud"
+    #"nastool@docker.nastool.de"
+    #"daocloud@docker.m.daocloud.io"
     "aidenxin@docker.aidenxin.xyz"
     "kubesre@dhub.kubesre.xyz"
+    "littlediary@hub.littlediary.cn"
+    "dockerpull@dockerpull.org"
+    "unsee@docker.unsee.tech"
 )
 
 ## 定义拉取的镜像,使用一个很小的镜像来测试速度
@@ -141,7 +144,7 @@ EOF
     )
 
     echo "$text_art"
-    echo -e '  欢迎使用 Docker Engine 一键安装脚本'
+    echo -e '  欢迎使用 xjxjin Docker 一键测速换源脚本'
 }
 
 ## 报错退出
@@ -418,7 +421,7 @@ function ChooseMirrors() {
         echo -e " 系统时间 ${BLUE}${date} ${timezone}${PLAIN}"
         echo -e " 国内环境可用docker镜像源上报: https://gitee.com/xjxjin/scripts/issues"
         echo -e " 国际环境可用docker镜像源上报: https://github.com/xjxjin/scripts/issues"
-        echo -e " 2024-08-28 新增由[LemonCANDY42]提供可用docker源1个"
+        echo -e " 2024-11-20 新增可用docker源3个，剔除部分无效源"
     }
 
     Title
