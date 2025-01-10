@@ -40,7 +40,7 @@ mirror_list_registry=(
     #"谷歌云@mirror.gcr.io"
     #"官方@registry.hub.docker.com"
     #"uuuadc@hub.uuuadc.top"
-    "1panel@docker.1panel.live"
+    "1panel.live@docker.1panel.live"
     "rat@hub.rat.dev"
     #"anyhub@docker.anyhub.us.kg"
     #"chenby@docker.chenby.cn"
@@ -53,12 +53,14 @@ mirror_list_registry=(
     #"daocloud@docker.m.daocloud.io"
     "aidenxin@docker.aidenxin.xyz"
     "littlediary@hub.littlediary.cn"
-    "dockerpull@dockerpull.org"
-    "unsee@docker.unsee.tech"
-    "hub-geekery@hub.geekery.cn"
+    #"dockerpull@dockerpull.org"
+    #"unsee@docker.unsee.tech"
+    #"hub-geekery@hub.geekery.cn"
     "1ms@docker.1ms.run"
     "wanpeng@docker.wanpeng.top"
-    "fxxk-dedyn@docker.fxxk.dedyn.io"
+    #"fxxk-dedyn@docker.fxxk.dedyn.io"
+    "1panel.top@docker.1panel.top"
+    "k-docker@k-docker.asia"
 )
 
 ## 定义拉取的镜像,使用一个很小的镜像来测试速度
@@ -424,7 +426,7 @@ function ChooseMirrors() {
         echo -e " 系统时间 ${BLUE}${date} ${timezone}${PLAIN}"
         echo -e " 国内环境可用docker镜像源上报: https://gitee.com/xjxjin/scripts/issues"
         echo -e " 国际环境可用docker镜像源上报: https://github.com/xjxjin/scripts/issues"
-        echo -e " 2024-11-20 新增可用docker源7个，剔除部分无效源"
+        echo -e " 2025-01-10  感谢【@Yxini-p】小哥提供的镜像源，新增可用docker源2个，剔除部分无效源"
     }
 
     Title
