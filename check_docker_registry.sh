@@ -51,7 +51,7 @@ mirror_list_registry=(
     #"hpcloud@docker.hpcloud.cloud"
     #"nastool@docker.nastool.de"
     #"daocloud@docker.m.daocloud.io"
-    "aidenxin@docker.aidenxin.xyz"
+    #"aidenxin@docker.aidenxin.xyz"
     "littlediary@hub.littlediary.cn"
     #"dockerpull@dockerpull.org"
     #"unsee@docker.unsee.tech"
