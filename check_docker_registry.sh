@@ -52,7 +52,7 @@ mirror_list_registry=(
     #"nastool@docker.nastool.de"
     #"daocloud@docker.m.daocloud.io"
     #"aidenxin@docker.aidenxin.xyz"
-    "littlediary@hub.littlediary.cn"
+    #"littlediary@hub.littlediary.cn"
     #"dockerpull@dockerpull.org"
     #"unsee@docker.unsee.tech"
     #"hub-geekery@hub.geekery.cn"
