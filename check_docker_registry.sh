@@ -23,7 +23,6 @@ mirror_list_registry=(
     "lispy@lispy.org"
     "hlmirror@docker.hlmirror.com"
     "xiaogenban1993@docker.xiaogenban1993.com"
-    "1panel.top@docker.1panel.top"
     "kejilion@docker.kejilion.pro"
     "dockerpull@dockerpull.cn"
     "xuanyuan@docker.xuanyuan.me"
